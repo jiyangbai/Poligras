@@ -69,7 +69,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 
 ### To run the code
 <p align="justify">
-The following commands train a TaGSim model and test on dataset.</p>
+The following commands train and execute Poligras model on specific dataset.</p>
 
 ```
 python3 src/train.py
