@@ -21,7 +21,7 @@ def main():
 
 
     executer = NewPolicyRunner(args)
-    train_count_reward, train_logProb = executer.fit()
+    executer.fit()
 
 
 if __name__ == "__main__":
