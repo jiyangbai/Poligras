@@ -9,7 +9,7 @@ def main():
 
     parser = argparse.ArgumentParser(description="Run NewPolicy.")
     parser.add_argument("--dataset", nargs="?", default="in-2004", help="Dataset name")
-    parser.add_argument("--counts", type=int, default=1, help="Number of iterations in each epoch. Default is 1.")
+    parser.add_argument("--counts", type=int, default=100, help="Number of iterations of node-mergings. Default is 100.")
     parser.add_argument("--filters1", type=int, default=64, help="Filters (neurons) in 1st convolution. Default is 64.")
     parser.add_argument("--filters2", type=int, default=32, help="Filters (neurons) in 2nd convolution. Default is 32.")
     parser.add_argument("--batch_size", type=int, default=128, help="Batch size. Default is 128.")
