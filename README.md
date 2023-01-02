@@ -27,7 +27,7 @@ scikit-learn      0.20.0
 ``` -->
 ### Datasets
 <p align="justify">
-Some datasets can be accessed in [[here]](https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing). Please make sure the downloaded datasets are placed and unzipped in corrsponding files.</p>
+Some datasets can be accessed in <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a>. Please make sure the downloaded datasets are placed and unzipped in corrsponding files.</p>
 
 <!-- Every JSON file has the following key-value structure:
 
