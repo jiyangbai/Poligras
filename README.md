@@ -72,7 +72,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 The following commands train and execute Poligras model on specific dataset.</p>
 
 ```
-python3 src/train.py
+python3 src/run.py
 ```
 
 <!-- Training a SimGNN model for a 100 epochs with a batch size of 512.
