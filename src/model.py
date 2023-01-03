@@ -105,7 +105,6 @@ class PoligrasRunner(object):
             
             init_groupIndex.append(np.array(curr_idx))
 
-
         # print('index size: ', len(init_groupIndex))
 
         f = open('./graph_store/{}/_{}_.best_temp'.format(self.args.dataset, 0), 'wb')
@@ -202,7 +201,7 @@ class PoligrasRunner(object):
                                 
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']
 
-                    else:# self.curr_graph[n1][n1]['if_true'] = False
+                    else:## self.curr_graph[n1][n1]['if_true'] = False
                         if(n2 in nei_n2): 
                             if(self.curr_graph[n2][n2]['if_true']):
                                 if((self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
@@ -223,7 +222,7 @@ class PoligrasRunner(object):
 
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']
 
-                        else:# n2 not in self loop
+                        else:## n2 not in self loop
                             if((self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                                 graph_modify_dict['if_true'][(n1,n1)] = True
                                 curr_reward += (2*self.curr_graph[n1][n1]['weight'] - len(self.superNodes_dict[n1])*(len(self.superNodes_dict[n1])-1)/2)
@@ -233,7 +232,7 @@ class PoligrasRunner(object):
 
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']
 
-                else:# n1 not in self loop
+                else:## n1 not in self loop
                     if(n2 in nei_n2):
                         if(self.curr_graph[n2][n2]['if_true']):
                             if((self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
@@ -244,7 +243,7 @@ class PoligrasRunner(object):
                                 curr_reward += (1 + len(self.superNodes_dict[n2])*(len(self.superNodes_dict[n2])-1)/2 - 2*self.curr_graph[n2][n2]['weight'])
                                 graph_modify_dict['add_edge'][(n1, n1)] = {'toAddWei':self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight'], 'ifTrue':False}
 
-                        else:# curr_graph[n2][n2]['if_true'] = False
+                        else:## curr_graph[n2][n2]['if_true'] = False
                             if((self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                                 curr_reward += (2*self.curr_graph[n2][n2]['weight'] - len(self.superNodes_dict[n2])*(len(self.superNodes_dict[n2])-1)/2)
                                 curr_reward += -len(self.superNodes_dict[n1])*(len(self.superNodes_dict[n1])-1)/2
@@ -254,7 +253,7 @@ class PoligrasRunner(object):
                                 curr_reward += (1 + len(self.superNodes_dict[n1])*len(self.superNodes_dict[n2]) - 2*self.curr_graph[n1][n2]['weight'])
                                 graph_modify_dict['add_edge'][(n1, n1)] = {'toAddWei':self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight'], 'ifTrue':False}
                     
-                    else:# n2 not in self loop
+                    else:## n2 not in self loop
                         if(self.curr_graph[n1][n2]['weight'] > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                             curr_reward += -len(self.superNodes_dict[n1])*(len(self.superNodes_dict[n1])-1)/2
                             curr_reward += -len(self.superNodes_dict[n2])*(len(self.superNodes_dict[n2])-1)/2
@@ -264,7 +263,7 @@ class PoligrasRunner(object):
                             curr_reward += (1 + len(self.superNodes_dict[n1])*len(self.superNodes_dict[n2]) - 2*self.curr_graph[n1][n2]['weight'])
                             graph_modify_dict['add_edge'][(n1, n1)] = {'toAddWei':self.curr_graph[n1][n2]['weight'], 'ifTrue':False}
 
-            else:# self.curr_graph[n1][n2]['if_true'] = False
+            else:## self.curr_graph[n1][n2]['if_true'] = False
                 if(n1 in nei_n1):
                     if(self.curr_graph[n1][n1]['if_true']):
                         if(n2 in nei_n2):
@@ -287,7 +286,7 @@ class PoligrasRunner(object):
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']
 
                         
-                        else:# n2 not in self loop
+                        else:## n2 not in self loop
                             if((self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                                 curr_reward += (2*self.curr_graph[n1][n2]['weight'] - len(self.superNodes_dict[n1])*len(self.superNodes_dict[n2]))
                                 curr_reward += -len(self.superNodes_dict[n2])*(len(self.superNodes_dict[n2])-1)/2
@@ -298,7 +297,7 @@ class PoligrasRunner(object):
 
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']
 
-                    else:# self.curr_graph[n1][n1]['if_true'] = False
+                    else:## self.curr_graph[n1][n1]['if_true'] = False
                         if(n2 in nei_n2):
                             if(self.curr_graph[n2][n2]['if_true']):
                                 if((self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
@@ -310,10 +309,10 @@ class PoligrasRunner(object):
 
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']
 
-                        else:# n2 not in self loop
+                        else:## n2 not in self loop
                             graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n1][n2]['weight']
 
-                else:# n1 not in self loop
+                else:## n1 not in self loop
                     if(n2 in nei_n2):
                         if(self.curr_graph[n2][n2]['if_true']):
                             if((self.curr_graph[n1][n2]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
@@ -331,7 +330,7 @@ class PoligrasRunner(object):
                     else:
                         graph_modify_dict['add_edge'][(n1, n1)] = {'toAddWei':self.curr_graph[n1][n2]['weight'], 'ifTrue':False}
 
-        else: # n1 n2 not connected
+        else:## n1 n2 not connected
             if(n1 in nei_n1):
                 if(self.curr_graph[n1][n1]['if_true']):
                     if(n2 in nei_n2):
@@ -356,7 +355,7 @@ class PoligrasRunner(object):
                         graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n2][n2]['weight']
 
 
-                    else:# n2 not in self loop 
+                    else:## n2 not in self loop 
                         if(self.curr_graph[n1][n1]['weight'] > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                             curr_reward += -len(self.superNodes_dict[n1])*len(self.superNodes_dict[n2])
                             curr_reward += -len(self.superNodes_dict[n2])*(len(self.superNodes_dict[n2])-1)/2
@@ -364,13 +363,12 @@ class PoligrasRunner(object):
                             curr_reward += (1 + len(self.superNodes_dict[n1])*(len(self.superNodes_dict[n1])-1)/2 - 2*self.curr_graph[n1][n1]['weight'])
                             graph_modify_dict['if_true'][(n1,n1)] = False
 
-                else:# self.curr_graph[n1][n1]['if_true'] = False
+                else:## self.curr_graph[n1][n1]['if_true'] = False
                     if(n2 in nei_n2):
                         if(self.curr_graph[n2][n2]['if_true']):
                             if((self.curr_graph[n1][n1]['weight'] + self.curr_graph[n2][n2]['weight']) > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
                                 curr_reward += (2*self.curr_graph[n1][n1]['weight'] - len(self.superNodes_dict[n1])*(len(self.superNodes_dict[n1])-1)/2)
                                 curr_reward += -len(self.superNodes_dict[n1])*len(self.superNodes_dict[n2])
-                                # curr_graph[n1][n1]['if_true'] = True
                                 graph_modify_dict['if_true'][(n1,n1)] = True
 
                             else:
@@ -379,7 +377,7 @@ class PoligrasRunner(object):
                         graph_modify_dict['weight'][(n1,n1)] = self.curr_graph[n1][n1]['weight'] + self.curr_graph[n2][n2]['weight']
 
 
-            else:# n1 not in self loop
+            else:## n1 not in self loop
                 if(n2 in nei_n2):
                     if(self.curr_graph[n2][n2]['if_true']):
                         if(self.curr_graph[n2][n2]['weight'] > ((len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2]))*(len(self.superNodes_dict[n1])+len(self.superNodes_dict[n2])-1)/4)):
@@ -421,13 +419,12 @@ class PoligrasRunner(object):
         # total_rewards = 0 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.args.lr, weight_decay=self.args.weight_decay)
 
-        self.max_reward_by_inner_iter = 0## max_reward_by_inner_iter is to help judge and execute the regrouping
+        self.max_reward_by_inner_iter = 0## "max_reward_by_inner_iter" is to help judge and execute the regrouping
         self.model.train()
         init_time = time.time()
         for count in range(self.args.counts):
             best, bad_counter = -1000000, 0
 
-            curr_time = time.time()
             while(True):
                 # start_time = time.time()
                 g_file = open('./graph_store/{}/_{}_.best_temp'.format(self.args.dataset, count), 'rb')
