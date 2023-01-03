@@ -2,12 +2,12 @@ import argparse
 import pickle
 
 
-from in2004_ew_shingle import NewPolicyRunner
+from model import PoligrasRunner
 
 
 def main():
 
-    parser = argparse.ArgumentParser(description="Run NewPolicy.")
+    parser = argparse.ArgumentParser(description="Run Poligras.")
     parser.add_argument("--dataset", nargs="?", default="in-2004", help="Dataset name")
     parser.add_argument("--counts", type=int, default=100, help="Number of iterations of node-mergings.")
     parser.add_argument("--filters1", type=int, default=64, help="Filters (neurons) in 1st convolution.")
@@ -20,9 +20,10 @@ def main():
     args = parser.parse_args()
 
 
-    executer = NewPolicyRunner(args)
+    executer = PoligrasRunner(args)
     executer.fit()
-
+    execute.encode()
+    
 
 if __name__ == "__main__":
     main()
