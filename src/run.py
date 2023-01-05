@@ -1,5 +1,4 @@
 import argparse
-import pickle
 
 
 from model import PoligrasRunner
