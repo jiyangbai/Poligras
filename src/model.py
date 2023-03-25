@@ -484,8 +484,9 @@ class PoligrasRunner(object):
             
             if(best > self.max_reward_by_inner_iter):
                 self.max_reward_by_inner_iter = best
-            if(best < (self.max_reward_by_inner_iter/3)):
+            elif(best < (self.max_reward_by_inner_iter/3)):
                 ## regrouping (group partitioning)
+                self.max_reward_by_inner_iter = 0
                 assert(self.best_graph.number_of_nodes() == len(self.best_init_superNodes_dict))
 
                 self.num_partitions = self.best_graph.number_of_nodes()//200
