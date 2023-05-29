@@ -45,13 +45,13 @@ class PoligrasRunner(object):
 
         self.args = args
 
-        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_nx_edgeWeighted', 'rb')
+        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset, 'rb')
         loaded_graph = pickle.load(g_file)
         g_file.close()
         self.init_graph = loaded_graph['G']
 
 
-        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_staticFeat_1000', 'rb')
+        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_feat', 'rb')
         loaded_data = pickle.load(g_file)
         g_file.close()
         self.node_feat = loaded_data['feat']
