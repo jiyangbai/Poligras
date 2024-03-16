@@ -104,7 +104,7 @@ class PoligrasRunner(object):
 
         # print('index size: ', len(init_groupIndex))
 
-        f = open('./{}/_{}_.best_temp'.format(self.args.dataset, 0), 'wb')
+        f = open('./{}_{}_.best_temp'.format(self.args.dataset, 0), 'wb')
         pickle.dump({'g':self.init_graph, 'group_index':init_groupIndex, 'superNodes_dict':init_superNodes_dict}, f)
         f.close()
  
@@ -424,7 +424,7 @@ class PoligrasRunner(object):
 
             while(True):
                 # start_time = time.time()
-                g_file = open('./{}/_{}_.best_temp'.format(self.args.dataset, count), 'rb')
+                g_file = open('./{}_{}_.best_temp'.format(self.args.dataset, count), 'rb')
                 loaded_compre = pickle.load(g_file)
                 g_file.close()
 
@@ -519,14 +519,14 @@ class PoligrasRunner(object):
 
 
             self.node_feat = self.best_currFeat
-            f = open('./{}/_{}_.best_temp'.format(self.args.dataset, count+1), 'wb')
+            f = open('./{}_{}_.best_temp'.format(self.args.dataset, count+1), 'wb')
             pickle.dump({'g':self.best_graph, 'group_index':self.best_init_groupIndex, 'superNodes_dict':self.best_init_superNodes_dict}, f)
             f.close()
             print('------\n')
                 
 
 
-        files = glob.glob('./{}/_*_.best_temp'.format(self.args.dataset))
+        files = glob.glob('./{}_*_.best_temp'.format(self.args.dataset))
         for fil in files:
             os.remove(fil)
 
