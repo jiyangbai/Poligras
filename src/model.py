@@ -401,7 +401,7 @@ class PoligrasRunner(object):
 
             self.curr_graph.remove_node(n2)
             ## update supernode features
-            self.curr_feat[n1] += self.curr_feat[n2]
+            self.curr_feat[self.init_nd_idx[n1]] += self.curr_feat[self.init_nd_idx[n2]]
             for init_n in self.superNodes_dict[n2]:
                 self.node_belonging[init_n] = n1
             self.superNodes_dict[n1] += self.superNodes_dict[n2]
