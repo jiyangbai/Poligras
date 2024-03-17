@@ -9,6 +9,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run Poligras.")
     parser.add_argument("--dataset", nargs="?", default="in-2004", help="Dataset name")
     parser.add_argument("--counts", type=int, default=100, help="Number of iterations of node-mergings.")
+    parser.add_argument("--group_size", type=int, default=200, help="Size of each divided group.")
     parser.add_argument("--filters1", type=int, default=64, help="Filters (neurons) in 1st convolution.")
     parser.add_argument("--filters2", type=int, default=32, help="Filters (neurons) in 2nd convolution.")
     parser.add_argument("--batch_size", type=int, default=128, help="Batch size.")
