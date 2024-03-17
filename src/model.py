@@ -73,7 +73,7 @@ class PoligrasRunner(object):
             ij += 1
 
         ## compute the initial group partitioning(index)
-        self.num_partitions = self.init_graph.number_of_nodes()//200
+        self.num_partitions = self.init_graph.number_of_nodes()//self.args.group_size
 
         h_function = list(range(self.init_graph.number_of_nodes()))
         random.shuffle(h_function)
@@ -489,7 +489,7 @@ class PoligrasRunner(object):
                 self.max_reward_by_inner_iter = 0
                 assert(self.best_graph.number_of_nodes() == len(self.best_init_superNodes_dict))
 
-                self.num_partitions = self.best_graph.number_of_nodes()//200
+                self.num_partitions = self.best_graph.number_of_nodes()//self.args.group_size
 
                 h_function = list(range(self.init_graph.number_of_nodes()))
                 random.shuffle(h_function)
