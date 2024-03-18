@@ -83,14 +83,26 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
     <code>numpy</code>
 </li>
 <li>
-    <code>pandas</code>
+    <code>random</code>
+</li>
+ <li>
+    <code>torch</code>
+</li>
+ <li>
+    <code>networkx</code>
 </li>
 <li>
-    <code>scipy</code>
+    <code>copy</code>
 </li>
 <li>
-    <code>scikit-learn</code>
+    <code>argparse</code>
 </li>
+ <li>
+    <code>pickle</code>
+</li>
+ <li>
+    <code>glob</code>
+ </li>
 </ul>
 </p>
 
