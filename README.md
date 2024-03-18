@@ -66,6 +66,34 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
   --histogram             BOOL        Include histogram features.              Default is False.
 ``` -->
 
+### Dependencies
+
+<p align="justify">
+ Install the following tools and packages:
+<ul dir="auto">
+<li>
+    <code>python3</code>
+    : Assume 
+    <code>python3</code>
+     by default (use 
+    <code>pip3</code>
+     to install packages).
+</li>
+<li>
+    <code>numpy</code>
+</li>
+<li>
+    <code>pandas</code>
+</li>
+<li>
+    <code>scipy</code>
+</li>
+<li>
+    <code>scikit-learn</code>
+</li>
+</ul>
+</p>
+
 
 ### To run the code
 <p align="justify">
