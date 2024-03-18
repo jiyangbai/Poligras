@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--lr", type=float, default=0.001, help="Learning rate.")
     parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability.")
     parser.add_argument("--weight-decay", type=float, default=0.0, help="Adam weight decay.")
-    parser.add_argument("--bad_counter", type=int, default=1, help="Value of bad counts to tolerate.")
+    parser.add_argument("--bad_counter", type=int, default=0, help="Value of bad counts to tolerate.")
     args = parser.parse_args()
 
 
