@@ -42,6 +42,7 @@ class Poligras(torch.nn.Module):
 class PoligrasRunner(object):
 
     def __init__(self, args):
+        print("\n-------Model initializing---------.\n")
 
         self.args = args
 
@@ -103,7 +104,7 @@ class PoligrasRunner(object):
             init_groupIndex.append(np.array(curr_idx))
 
         # print('index size: ', len(init_groupIndex))
-
+        self.best_superNodes_dict = init_superNodes_dict
         f = open('./{}_{}_.best_temp'.format(self.args.dataset, 0), 'wb')
         pickle.dump({'g':self.init_graph, 'group_index':init_groupIndex, 'superNodes_dict':init_superNodes_dict}, f)
         f.close()
@@ -418,7 +419,7 @@ class PoligrasRunner(object):
 
         self.max_reward_by_inner_iter = 0## "max_reward_by_inner_iter" is to help judge and execute the regrouping
         self.model.train()
-        init_time = time.time()
+        # init_time = time.time()
         for count in range(self.args.counts):
             best, bad_counter = -1000000, 0
 
@@ -472,8 +473,8 @@ class PoligrasRunner(object):
                 if(count_reward > (1 + ratio)*best):
                     best, bad_counter = count_reward, 0
 
-                    self.best_graph, self.best_currFeat, self.best_init_groupIndex = self.curr_graph, self.curr_feat, self.group_index
-                    self.best_init_superNodes_dict = self.superNodes_dict
+                    self.best_graph, self.best_currFeat, self.best_groupIndex = self.curr_graph, self.curr_feat, self.group_index
+                    self.best_superNodes_dict = self.superNodes_dict
                 else:
                     bad_counter += 1
 
@@ -487,7 +488,7 @@ class PoligrasRunner(object):
             elif(best < (self.max_reward_by_inner_iter/3)):
                 ## regrouping (group partitioning)
                 self.max_reward_by_inner_iter = 0
-                assert(self.best_graph.number_of_nodes() == len(self.best_init_superNodes_dict))
+                assert(self.best_graph.number_of_nodes() == len(self.best_superNodes_dict))
 
                 self.num_partitions = self.best_graph.number_of_nodes()//self.args.group_size
 
@@ -495,9 +496,9 @@ class PoligrasRunner(object):
                 random.shuffle(h_function)
 
                 F_A_dict = {}
-                for A in self.best_init_superNodes_dict:
+                for A in self.best_superNodes_dict:
                     F_A = self.init_graph.number_of_nodes()
-                    for v in self.best_init_superNodes_dict[A]:
+                    for v in self.best_superNodes_dict[A]:
                         f_v = self.init_graph.number_of_nodes()
                         for u in list(self.init_graph[v]) + [v]:
                             if(h_function[self.init_nd_idx[int(u)]] < f_v):
@@ -509,19 +510,23 @@ class PoligrasRunner(object):
                     F_A_dict[A] = F_A
                 F_A_list = sorted(F_A_dict.items(), key=lambda item:item[1])
 
-                self.best_init_groupIndex = []
+                self.best_groupIndex = []
                 for i in range(self.num_partitions):
                     curr_idx = []
                     for j in F_A_list[int(i*len(F_A_list)/self.num_partitions): int((i+1)*len(F_A_list)/self.num_partitions)]:
                         curr_idx.append(j[0])
                     
-                    self.best_init_groupIndex.append(np.array(curr_idx))
+                    self.best_groupIndex.append(np.array(curr_idx))
 
 
             self.node_feat = self.best_currFeat
             f = open('./{}_{}_.best_temp'.format(self.args.dataset, count+1), 'wb')
-            pickle.dump({'g':self.best_graph, 'group_index':self.best_init_groupIndex, 'superNodes_dict':self.best_init_superNodes_dict}, f)
+            pickle.dump({'g':self.best_graph, 'group_index':self.best_groupIndex, 'superNodes_dict':self.best_superNodes_dict}, f)
             f.close()
+
+            files = glob.glob('./{}_{}_.best_temp'.format(self.args.dataset, count))
+            for fil in files:
+                os.remove(fil)
             print('------\n')
                 
 
@@ -530,18 +535,16 @@ class PoligrasRunner(object):
         for fil in files:
             os.remove(fil)
 
-        # print("\n-------Running finished, total reward is {}---------.\n".format(total_rewards))
-
 
 #---------------------------------------------------------------------------------------------------------------------------------
     def encode(self):
         print("\n-------Model encoding---------.\n")
 
-        self.super_edge = []# {}
+        self.super_edge, self_edge = [], []
         self.correctionSet_plus, self.correctionSet_minus = [], []# {}, {}
 
-        done_pair, i_dx = {}, 0
-        self.superNodes_dict = self.best_init_superNodes_dict
+        finished_pair, i_dx = {}, 0
+        self.superNodes_dict = self.best_superNodes_dict
         for A in self.superNodes_dict:
             iterative_superNode = []
             # print('{}th supernode'.format(i_dx))
@@ -552,44 +555,49 @@ class PoligrasRunner(object):
             for B in set(iterative_superNode):
                 if(A == B):
                     continue
-                if((A, B) in done_pair):
+                if((A, B) in finished_pair):
                     continue
                 else:
-                    done_pair[(A,B)] = 0
-                    done_pair[(B,A)] = 0
+                    finished_pair[(A,B)] = 0
+                    finished_pair[(B,A)] = 0
             
 
-                E_AB = [] # 0
+                Edge_AB = [] # 0
                 Pi_E_AB = []
                 for n1 in self.superNodes_dict[A]:
                     for n2 in self.superNodes_dict[B]:
                         if((n1, n2) in self.init_graph.edges()):
-                            E_AB.append((n1, n2))
+                            Edge_AB.append((n1, n2))
                         else:
                             Pi_E_AB.append((n1, n2))
 
-                if(len(E_AB) <= (len(self.superNodes_dict[A])*len(self.superNodes_dict[B])/2)):
-                    self.correctionSet_plus += E_AB
+                if(len(Edge_AB) <= (len(self.superNodes_dict[A])*len(self.superNodes_dict[B])/2)):
+                    self.correctionSet_plus += Edge_AB
                 else:
                     self.super_edge.append((A, B))# += 1#
-                    self.correctionSet_minus += Pi_E_AB# (Pi_AB - E_AB)
+                    self.correctionSet_minus += Pi_E_AB
 
 
-            E_AA = []
+            Edge_AA = []
             Pi_E_AA = []
             for n1 in self.superNodes_dict[A]:
                 for n2 in self.superNodes_dict[A]:
                     if(n1<n2):
                         if((n1, n2) in self.init_graph.edges()):
-                            E_AA.append((n1, n2))# += 1
+                            Edge_AA.append((n1, n2))# += 1
                         else:
-                            Pi_E_AA.append((n1, n2))  
+                            Pi_E_AA.append((n1, n2))
+                ## to store the initial nodes having the self-loop edge 
+                if((n1, n1) in self.init_graph.edges()): 
+                    self_edge.append(n1)
 
-            if(len(E_AA) <= (len(self.superNodes_dict[A])*(len(self.superNodes_dict[A])-1)/4)):
-                self.correctionSet_plus += E_AA
+
+
+            if(len(Edge_AA) <= (len(self.superNodes_dict[A])*(len(self.superNodes_dict[A])-1)/4)):
+                self.correctionSet_plus += Edge_AA
             else:
                 self.super_edge.append((A, A))
-                self.correctionSet_minus += Pi_E_AA#(Pi_AA - E_AA) #list(Pi_AA - E_AA)
+                self.correctionSet_minus += Pi_E_AA
 
             i_dx += 1
 
@@ -599,5 +607,5 @@ class PoligrasRunner(object):
         print('#super edge: ', len(self.super_edge))
         print('#correset_plus: ', len(self.correctionSet_plus))
         print('#correset_minus: ', len(self.correctionSet_minus))
-        print("\n-------SuperNode encoding ended, total reward is {}---------.\n".format(self.init_graph.number_of_edges() - len(self.super_edge) - len(self.correctionSet_plus) - len(self.correctionSet_minus)))
+        print("\n-------SuperNode encoding ended, total reward is {}---------.\n".format(self.init_graph.number_of_edges() - len(self_edge) - len(self.super_edge) - len(self.correctionSet_plus) - len(self.correctionSet_minus)))
 
