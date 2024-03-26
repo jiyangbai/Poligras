@@ -118,8 +118,7 @@ The following commands train and execute the Poligras model on specific dataset.
 python3 src/run.py --dataset dataset_name
 ```
 
-Users can also setup the model options by: <code>--dataset</code>: dataset to run; <code>--counts</code>: number of graph summarization iterations;
-
+Users can also setup more model options by: <code>--dataset</code>: dataset to run; <code>--counts</code>: number of graph summarization iterations; <code>--lr</code>: learning rate.
 
 After the running, the total rewards will be printed and users can store the generated graph summaries.
 <!-- Training a SimGNN model for a 100 epochs with a batch size of 512.
