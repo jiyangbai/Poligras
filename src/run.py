@@ -22,7 +22,7 @@ def main():
 
     executer = PoligrasRunner(args)
     executer.fit()
-    execute.encode()
+    executer.encode()
     
 
 if __name__ == "__main__":
