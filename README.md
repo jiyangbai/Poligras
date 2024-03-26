@@ -112,7 +112,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 
 The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
  
-The following commands train and execute Poligras model on specific dataset.</p>
+The following commands train and execute the Poligras model on specific dataset.</p>
 
 ```
 python3 src/run.py --dataset dataset_name
