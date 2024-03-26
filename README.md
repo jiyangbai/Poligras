@@ -110,7 +110,16 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 ### To run the code
 <p align="justify">
 
-The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
+The <code>run.py</code> is to set up all hyperparameters, for example users can set up the following options
+
+```
+  --filters-1             INT         Number of filter in 1st GCN layer.       Default is 128.
+  --filters-2             INT         Number of filter in 2nd GCN layer.       Default is 64. 
+  --filters-3             INT         Number of filter in 3rd GCN layer.       Default is 32.
+  --tensor-neurons        INT         Neurons in tensor network layer.         Default is 16.
+```
+
+The <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
  
 The following commands train and execute the Poligras model on specific dataset.</p>
 
