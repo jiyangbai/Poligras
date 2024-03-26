@@ -27,7 +27,7 @@ scikit-learn      0.20.0
 ``` -->
 ### Datasets
 <p align="justify">
-Datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a>. Before running code on specific dataset, please make sure to create file directory with same name as dataset at first. For example, if running on in-2004 dataset, first create directory <code>./dataset/in-2004/</code>, then download and unzip in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).</p>
+All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a>. Before running code on specific dataset, please make sure to create file directory with same name as dataset at first. For example, if running on in-2004 dataset, first create directory <code>./dataset/in-2004/</code>, then download and unzip in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).</p>
 
 <!-- Every JSON file has the following key-value structure:
 
