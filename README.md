@@ -26,6 +26,8 @@ torchvision       0.3.0
 scikit-learn      0.20.0
 ``` -->
 ## Datasets
+<font color="green"> for testtesttest<font>
+
 
 <!--<p align="justify">-->
 **All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the big sizes, we cannot directly upload some datasets onto Github website)**. We have uploaded the astro-ph and cnr-200 (in .zip file) into this Github file. Before running code on specific dataset, please make sure to create file directory with same name as dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. For example, if running on the in-2004 dataset, first create directory <code>./dataset/in-2004/</code>, then download and unzip the in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).
@@ -109,11 +111,10 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 
 
 ## To run the code
-<p align="justify">
 
 The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
  
-The following commands train and execute the Poligras model on specific dataset.</p>
+The following commands train and execute the Poligras model on specific dataset.
 
 ```
 python3 src/run.py --dataset dataset_name
@@ -122,6 +123,8 @@ python3 src/run.py --dataset dataset_name
 Users can also set up more model options by: <code>--dataset</code>: dataset to run; <code>--counts</code>: number of graph summarization iterations; <code>--lr</code>: learning rate.
 
 After the running, the total rewards will be printed and users can store the generated graph summaries.
+
+
 <!-- Training a SimGNN model for a 100 epochs with a batch size of 512.
 ```
 python src/main.py --epochs 100 --batch-size 512
