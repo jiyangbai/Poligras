@@ -69,7 +69,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
 
 ## Dependencies
 
-<p align="justify">
+<--<p align="justify">-->
  Install the following tools and packages:
 <ul dir="auto">
 <li>
@@ -105,7 +105,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
     <code>glob</code>
  </li>
 </ul>
-</p>
+
 
 
 ## To run the code
