@@ -66,7 +66,7 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
   --histogram             BOOL        Include histogram features.              Default is False.
 ``` -->
 
-### Dependencies
+## Dependencies
 
 <p align="justify">
  Install the following tools and packages:
