@@ -29,8 +29,18 @@ scikit-learn      0.20.0
 
 
 <!--<p align="justify">-->
-### All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the big sizes, we cannot directly upload some datasets onto Github website). 
-We have uploaded the astro-ph and cnr-200 (in .zip file) into this Github file. Before running code on specific dataset, please make sure to create file directory with same name as dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. For example, if running on the in-2004 dataset, first create directory <code>./dataset/in-2004/</code>, then download and unzip the in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).
+### *All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the big sizes, we cannot directly upload some datasets onto Github website)*. 
+
+We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. Before running code on specific dataset, please make sure to create file directory with same name as dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. For example, if running on the in-2004 dataset, users can execute the following steps:
+
+1. Create directory <code>./dataset/in-2004/</code>
+```
+mkdir ./dataset/in-2004/
+```
+
+2. download and unzip the in-2004 dataset
+
+<!--first create directory <code>./dataset/in-2004/</code>, then download and unzip the in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).-->
 
 <!-- Every JSON file has the following key-value structure:
 
