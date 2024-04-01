@@ -38,7 +38,12 @@ We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. 
 mkdir ./dataset/in-2004/
 ```
 
-2. download and unzip the in-2004 dataset
+2. Download and unzip the in-2004 dataset files
+```
+unzip in-2004_graph.zip
+unzip in-2004_feat.zip
+```
+  , then move 
 
 <!--first create directory <code>./dataset/in-2004/</code>, then download and unzip the in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).-->
 
