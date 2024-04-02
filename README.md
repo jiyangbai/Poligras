@@ -38,7 +38,7 @@ We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. 
 mkdir ./dataset/in-2004/
 ```
 
-2. Download and unzip the in-2004 dataset files, which include the <code>in-2004_graph</code> file that contains the graph structure and the <code>in-2004_feat</code> file that contains node features)
+2. Download and unzip the in-2004 dataset files, which include the <code>in-2004_graph</code> file that contains the graph structure and the <code>in-2004_feat</code> file that contains node features
 ```
 unzip in-2004_graph.zip
 unzip in-2004_feat.zip
