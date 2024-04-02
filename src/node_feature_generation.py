@@ -11,7 +11,7 @@ if __name__ == "__main__":
     interval_size = 1000 # interval size is defined as $|V|/d$, where $|V|$ is the number of nodes and $d$ is final output node embedding size
 
 
-    g_file = open('./dataset/' + dataset + '/' dataset, 'rb')
+    g_file = open('./dataset/' + dataset + '/' dataset + '_graph', 'rb')
     loaded_graph = pickle.load(g_file)
     g_file.close()
     g = loaded_graph['G']
