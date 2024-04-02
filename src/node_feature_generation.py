@@ -2,16 +2,21 @@ import torch
 import pickle
 import networkx as nx
 import numpy as np
+import argparse
 from os.path import basename
 
 
 
 if __name__ == "__main__":
-    dataset = "in-2004" # graph name
+
+    parser = argparse.ArgumentParser(description="Run Poligras.")
+    parser.add_argument("--dataset", nargs="?", default="in-2004", help="Dataset name")
+    args = parser.parse_args()
+
+    
     interval_size = 1000 # interval size is defined as $|V|/d$, where $|V|$ is the number of nodes and $d$ is final output node embedding size
 
-
-    g_file = open('./dataset/' + dataset + '/' dataset + '_graph', 'rb')
+    g_file = open('./dataset/' + args.dataset + '/' + args.dataset + '_graph', 'rb')
     loaded_graph = pickle.load(g_file)
     g_file.close()
     g = loaded_graph['G']
@@ -46,7 +51,7 @@ if __name__ == "__main__":
     node_feat = torch.FloatTensor(feat_list)
 
 
-    f = open(dataset + '_feat', 'wb')
+    f = open(args.dataset + '_feat', 'wb')
     data = {'feat': node_feat}
     pickle.dump(data, f)
     f.close()
