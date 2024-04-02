@@ -13,7 +13,7 @@ def main():
     parser.add_argument("--hidden_size1", type=int, default=64, help="1st hidden layer size of MLP in the policy function.")
     parser.add_argument("--hidden_size2", type=int, default=32, help="Output layer size of MLP in the policy function.")
     parser.add_argument("--lr", type=float, default=0.001, help="Learning rate for the back-propagation.")
-    parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability in the policy function computation.")
+    parser.add_argument("--dropout", type=float, default=0.0, help="Dropout probability in the policy function for the node pair selection probability matrix computation.")
     parser.add_argument("--weight-decay", type=float, default=0.0, help="Adam optimizer weight decay.")
     parser.add_argument("--bad_counter", type=int, default=0, help="Value of bad counts to tolerate for each training iteration.")
     args = parser.parse_args()
