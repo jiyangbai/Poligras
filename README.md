@@ -126,6 +126,10 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
  </li>
 </ul>
 
+Users can also run the provided <code>installer.txt</code> to install all the above packages.
+```
+pip3 install -r installer.txt
+```
 
 
 ## To run the code
