@@ -45,7 +45,7 @@ unzip in-2004_feat.zip
 ```
 , then move <code>in-2004_graph</code> file and <code>in-2004_feat</code> file into <code>./dataset/in-2004/</code>.
 ```
-mv in-2004_graph, in-2004_feat ./dataset/in-2004/
+mv in-2004_graph in-2004_feat ./dataset/in-2004/
 ```
 
 <!--first create directory <code>./dataset/in-2004/</code>, then download and unzip the in-2004 dataset (including graph file and node features file) into the directory (i.e., having <code>./dataset/in-2004/in-2004</code> and <code>./dataset/in-2004/in-2004_feat</code>).-->
