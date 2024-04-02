@@ -46,7 +46,7 @@ class PoligrasRunner(object):
 
         self.args = args
 
-        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset, 'rb')
+        g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_graph', 'rb')
         loaded_graph = pickle.load(g_file)
         g_file.close()
         self.init_graph = loaded_graph['G']
