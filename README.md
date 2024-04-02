@@ -110,9 +110,6 @@ Training a SimGNN model is handled by the `src/main.py` script which provides th
     <code>random</code>
 </li>
  <li>
-    <code>torch</code>
-</li>
- <li>
     <code>networkx</code>
 </li>
 <li>
