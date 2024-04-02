@@ -15,8 +15,8 @@ class Poligras(torch.nn.Module):
         super(Poligras, self).__init__()
         self.args = args
 
-        self.interLayer_first = torch.nn.Linear(self.args.feat_dim, self.args.filters1)
-        self.fully_connected_second = torch.nn.Linear(self.args.filters1, self.args.filters2)
+        self.interLayer_first = torch.nn.Linear(self.args.feat_dim, self.args.hidden_size1)
+        self.fully_connected_second = torch.nn.Linear(self.args.hidden_size1, self.args.hidden_size2)
         self.dropout = torch.nn.Dropout(p=self.args.dropout)
 
         self.saved_log_probs = []
