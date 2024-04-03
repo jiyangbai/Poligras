@@ -153,8 +153,14 @@ For example, if users want to run Poligras on in-2004 dataset for 100 iterations
 python3 src/run.py --dataset in-2004 --counts 100 --lr 0.001
 ```
 
-After the running, the total rewards will be printed and users can store the generated graph summaries.
+After the running, the total summarization rewards will be printed in the following example format:
+```
+#super edge: ####
+corretion set size: ####
 
+-------SuperNode encoding ended, total reward is ####---------.
+```
+Apart from the graph summarization rewards, users can also see the final graph summary superedges number and correction set size.
 
 
 
