@@ -97,7 +97,7 @@ class PoligrasRunner(object):
             F_A_dict[A] = F_A
         F_A_list = sorted(F_A_dict.items(), key=lambda item:item[1])
 
-        init_groupIndex = []
+        init_groupIndex = [] ## to store the initial nodes indices contained in each group
         for i in range(self.num_partitions):
             curr_idx = []
             for j in F_A_list[int(i*len(F_A_list)/self.num_partitions): int((i+1)*len(F_A_list)/self.num_partitions)]:
@@ -107,16 +107,19 @@ class PoligrasRunner(object):
 
         # print('index size: ', len(init_groupIndex))
         self.best_superNodes_dict = init_superNodes_dict
+        
+        ## store the data for the following use
         f = open('./{}_{}_.best_temp'.format(self.args.dataset, 0), 'wb')
         pickle.dump({'g':self.init_graph, 'group_index':init_groupIndex, 'superNodes_dict':init_superNodes_dict}, f)
         f.close()
  
  
     def select_action(self, curr_feat):
+        ## select node pair according to computed selection probability matrix
 
-        curr_probs = self.model(curr_feat)
+        curr_probs = self.model(curr_feat) ## compute selection probability matrix 
 
-        curr_action = curr_probs.argmax()
+        curr_action = curr_probs.argmax() ## select node pair with the highest probability
         curr_action_row, curr_action_col = curr_action.item() // curr_probs.size()[0], curr_action.item() % curr_probs.size()[0]
 
         if(curr_action_row == curr_action_col):
