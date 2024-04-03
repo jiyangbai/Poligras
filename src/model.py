@@ -426,7 +426,7 @@ class PoligrasRunner(object):
         # total_rewards = 0 
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=self.args.lr, weight_decay=self.args.weight_decay)
 
-        self.max_reward_by_inner_iter = 0## "max_reward_by_inner_iter" is to help judge and execute the regrouping
+        self.max_reward_by_inner_iter = 0## "max_reward_by_inner_iter" is to help judge and execute the group re-partitioning
         self.model.train()
         # init_time = time.time()
         for count in range(self.args.counts):
