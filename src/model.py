@@ -615,6 +615,6 @@ class PoligrasRunner(object):
         print('==============================\n')
 
         print('#super edge: ', len(self.super_edge))
-        print('correset set size: ', len(self.correctionSet_plus) + len(self.correctionSet_minus))
+        print('correction set size: ', len(self.correctionSet_plus) + len(self.correctionSet_minus))
         print("\n-------SuperNode encoding ended, total reward is {}---------.\n".format(self.init_graph.number_of_edges() - len(self_edge) - len(self.super_edge) - len(self.correctionSet_plus) - len(self.correctionSet_minus)))
 
