@@ -137,14 +137,32 @@ pip3 install -r installer.txt
 The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
  
 The following commands train and execute the Poligras model on specific dataset.
-
 ```
 python3 src/run.py --dataset dataset_name
 ```
 
-Users can also set up more model options by: <code>--dataset</code>: dataset to run; <code>--counts</code>: number of graph summarization iterations; <code>--lr</code>: learning rate.
+Users can also set up more model options by:   
+<ul dir="auto">
+<li><code>--dataset</code> : dataset to run;</li>
+<li><code>--counts</code>  : number of graph summarization iterations;</li>
+<li><code>--lr</code>      : learning rate;</li>
+</ul>
+For example, if users want to run Poligras on in-2004 dataset for 100 iterations with the learning rate as 0.001, users can use the following code:
+```
+python3 src/run.py --dataset in-2004 --counts 100 --lr 0.001
+```
 
 After the running, the total rewards will be printed and users can store the generated graph summaries.
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Training a SimGNN model for a 100 epochs with a batch size of 512.
