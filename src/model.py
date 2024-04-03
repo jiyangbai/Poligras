@@ -15,7 +15,7 @@ class Poligras(torch.nn.Module):
         super(Poligras, self).__init__()
         self.args = args
 
-        ## set up learnable parameters in the policy function
+        ## set up the MLP structure and learnable parameters in the policy function
         self.interLayer_first = torch.nn.Linear(self.args.feat_dim, self.args.hidden_size1)
         self.fully_connected_second = torch.nn.Linear(self.args.hidden_size1, self.args.hidden_size2)
         self.dropout = torch.nn.Dropout(p=self.args.dropout)
@@ -62,15 +62,15 @@ class PoligrasRunner(object):
         # print('feat size: ', self.args.feat_dim)
         self.model = Poligras(self.args)
 
-        init_superNodes_dict = {}
-        self.node_belonging = {}
+        init_superNodes_dict = {} ## each initial node belongs to the supernode of its own
+        self.node_belonging = {} ## to record which supernode one specific initial node belongs to
         for node in self.init_graph.nodes():
-            init_superNodes_dict[node] = [node]
+            init_superNodes_dict[node] = [node] ## initially each supernode only has one initial node
             self.node_belonging[node] = node
 
 
         ij = 0
-        self.init_nd_idx = {}
+        self.init_nd_idx = {} ## to record the index of initial nodes
         for nd in self.init_graph.nodes():
             self.init_nd_idx[nd] = ij
             ij += 1
