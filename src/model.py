@@ -15,6 +15,7 @@ class Poligras(torch.nn.Module):
         super(Poligras, self).__init__()
         self.args = args
 
+        ## set up learnable parameters in the policy function
         self.interLayer_first = torch.nn.Linear(self.args.feat_dim, self.args.hidden_size1)
         self.fully_connected_second = torch.nn.Linear(self.args.hidden_size1, self.args.hidden_size2)
         self.dropout = torch.nn.Dropout(p=self.args.dropout)
@@ -24,7 +25,7 @@ class Poligras(torch.nn.Module):
 
 
     def forward(self, x):
-
+        ## policy function computation steps
         temp_feat = torch.nn.functional.relu(self.interLayer_first(x))
         temp_feat =  self.fully_connected_second(temp_feat)
         temp_feat = torch.mm(temp_feat, torch.t(temp_feat))
@@ -46,12 +47,13 @@ class PoligrasRunner(object):
 
         self.args = args
 
+        ## load graph structure
         g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_graph', 'rb')
         loaded_graph = pickle.load(g_file)
         g_file.close()
         self.init_graph = loaded_graph['G']
 
-
+        ## load node features
         g_file = open('./dataset/' + self.args.dataset + '/' + self.args.dataset + '_feat', 'rb')
         loaded_data = pickle.load(g_file)
         g_file.close()
