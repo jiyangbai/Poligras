@@ -26,6 +26,7 @@ class Poligras(torch.nn.Module):
 
     def forward(self, x):
         ## policy function computation steps
+        
         temp_feat = torch.nn.functional.relu(self.interLayer_first(x))
         temp_feat =  self.fully_connected_second(temp_feat)
         temp_feat = torch.mm(temp_feat, torch.t(temp_feat))
@@ -115,7 +116,7 @@ class PoligrasRunner(object):
  
  
     def select_action(self, curr_feat):
-        ## select node pair according to computed selection probability matrix
+        ## to select node pair according to computed selection probability matrix
 
         curr_probs = self.model(curr_feat) ## compute selection probability matrix 
 
@@ -130,11 +131,13 @@ class PoligrasRunner(object):
 
 
     def update_graph(self, n1, n2, curr_graph):
+        ## to compute the summarization reward for the given node pair, also update the intermediate supergraph if the node pair is truly merged
 
         curr_reward, graph_modify_dict = 0, {'weight':{}, 'if_true':{}, 'add_edge':{}}## "curr_reward" records the sr of merging n1 & n2; "graph_modify_dict" temporarily stores the modifications of graph when merging two (super)nodes, which will be truly conducted if curr_reward > 0;
         nei_n1, nei_n2 = set(self.curr_graph[n1]), set(self.curr_graph[n2])
 
-        ## compute curr_reward with the help of indicative graph
+
+        ## consider the cases of n1, n2's neighboring nodes
         for sd in nei_n1 & nei_n2 - set([n1]) - set([n2]):
             if(self.curr_graph[n1][sd]['if_true']):
                 if(self.curr_graph[n2][sd]['if_true']):
@@ -397,7 +400,7 @@ class PoligrasRunner(object):
 
         self.model.rewards.append(curr_reward)
         if(curr_reward > 0):
-            ## modify current graph (indicative graph)
+            ## modify current intermediate supergraph
             for pair in graph_modify_dict['weight']:
                 self.curr_graph[pair[0]][pair[1]]['weight'] = graph_modify_dict['weight'][pair]
             for pair in graph_modify_dict['if_true']:
@@ -406,6 +409,7 @@ class PoligrasRunner(object):
                 self.curr_graph.add_edge(pair[0], pair[1], weight=graph_modify_dict['add_edge'][pair]['toAddWei'], if_true=graph_modify_dict['add_edge'][pair]['ifTrue'])
 
             self.curr_graph.remove_node(n2)
+            
             ## update supernode features
             self.curr_feat[self.init_nd_idx[n1]] += self.curr_feat[self.init_nd_idx[n2]]
             for init_n in self.superNodes_dict[n2]:
@@ -487,7 +491,7 @@ class PoligrasRunner(object):
                     # total_rewards += best
                     break
 
-            
+            ## to determine if needs to execute group partitioning for another time
             if(best > self.max_reward_by_inner_iter):
                 self.max_reward_by_inner_iter = best
             elif(best < (self.max_reward_by_inner_iter/3)):
@@ -543,6 +547,7 @@ class PoligrasRunner(object):
 
 #---------------------------------------------------------------------------------------------------------------------------------
     def encode(self):
+        ## encode superedges after finishing the graph summarization iterations
         print("\n-------Model encoding---------.\n")
 
         self.super_edge, self_edge = [], []
