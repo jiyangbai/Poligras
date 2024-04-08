@@ -147,7 +147,7 @@ Users can also set up more model options by:
 <li><code>--counts</code>  : number of graph summarization iterations;</li>
 <li><code>--lr</code>      : learning rate;</li>
 </ul>
-For example, if users want to run Poligras on in-2004 dataset for 100 iterations with the learning rate as 0.001, users can use the following code:
+For example, if users want to run Poligras on in-2004 dataset for 100 iterations with the learning rate as 0.001, users can use the following command:
 
 ```
 python3 src/run.py --dataset in-2004 --counts 100 --lr 0.001
