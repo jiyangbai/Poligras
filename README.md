@@ -136,8 +136,7 @@ pip3 install -r installer.txt
 
 ## To run the code
 
-The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
- 
+
 The following commands train and execute the Poligras model on a specific dataset.
 ```
 python3 src/run.py --dataset dataset_name
@@ -163,6 +162,13 @@ corretion set size: ####
 -------SuperNode encoding ended, total reward is ####---------.
 ```
 Apart from the graph summarization rewards, users can also see the final graph summary superedges number and correction set size.
+
+
+
+## Code structures
+
+The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
+ 
 
 
 
