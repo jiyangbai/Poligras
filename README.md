@@ -31,7 +31,9 @@ scikit-learn      0.20.0
 <!--<p align="justify">-->
 ### *All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the size limitation in Github(<= 25MB), we cannot directly upload some datasets onto Github website)*. 
 
-We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. Before running code on a specific dataset, please make sure to create a file directory with the same name as the dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. For example, if running on the in-2004 dataset, users can execute the following steps:
+We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. Before running code on a specific dataset, please make sure to create a file directory with the same name as the dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. 
+
+For example, if running on the in-2004 dataset, users can execute the following steps:
 
 1. Create directory <code>./dataset/in-2004/</code>.
 ```
