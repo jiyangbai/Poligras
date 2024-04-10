@@ -9,7 +9,7 @@ from os.path import basename
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Run Poligras.")
+    parser = argparse.ArgumentParser(description="Run feature generation code.")
     parser.add_argument("--dataset", nargs="?", default="in-2004", help="Dataset name")
     args = parser.parse_args()
 
