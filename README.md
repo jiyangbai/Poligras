@@ -139,7 +139,7 @@ For example, if users want to run Poligras on the astro-ph dataset for 100 itera
 python3 src/run.py --dataset astro-ph --counts 100 --lr 0.001
 ```
 
-After the running, **the graph summary (including the supernodes dividing, superedges, and correction set) will be stored** into a file named <code>datasetname_graph_summary</code>. The total summarization reward will be printed in the following example format:
+After the running, **the graph summary (including the supernodes dividing, superedges, and edge correction set) will be stored** into a file named <code>datasetname_graph_summary</code>. The total summarization reward will be printed in the following example format:
 ```
 #super edge: ####
 correction set size: ####
