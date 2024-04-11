@@ -550,8 +550,8 @@ class PoligrasRunner(object):
         ## encode superedges after finishing the graph summarization iterations
         print("\n-------Model encoding---------.\n")
 
-        self.superEdges, self_edge = [], []
-        self.correctionSet_plus, self.correctionSet_minus = [], []# {}, {}
+        self.superEdges, self_edge = [], []  ## to store the superedges and the initial self-loop edges on initial nodes
+        self.correctionSet_plus, self.correctionSet_minus = [], [] ## to store the correction set edges to add and to delete from the supergraph when restoring the initial graph
 
         finished_pair, i_dx = {}, 0
         self.superNodes_dict = self.best_superNodes_dict
