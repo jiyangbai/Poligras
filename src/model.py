@@ -550,7 +550,7 @@ class PoligrasRunner(object):
         ## encode superedges after finishing the graph summarization iterations
         print("\n-------Model encoding---------.\n")
 
-        self.super_edge, self_edge = [], []
+        self.superEdges, self_edge = [], []
         self.correctionSet_plus, self.correctionSet_minus = [], []# {}, {}
 
         finished_pair, i_dx = {}, 0
@@ -584,7 +584,7 @@ class PoligrasRunner(object):
                 if(len(Edge_AB) <= (len(self.superNodes_dict[A])*len(self.superNodes_dict[B])/2)):
                     self.correctionSet_plus += Edge_AB
                 else:
-                    self.super_edge.append((A, B))# += 1#
+                    self.superEdges.append((A, B))# += 1#
                     self.correctionSet_minus += Pi_E_AB
 
 
@@ -606,7 +606,7 @@ class PoligrasRunner(object):
             if(len(Edge_AA) <= (len(self.superNodes_dict[A])*(len(self.superNodes_dict[A])-1)/4)):
                 self.correctionSet_plus += Edge_AA
             else:
-                self.super_edge.append((A, A))
+                self.superEdges.append((A, A))
                 self.correctionSet_minus += Pi_E_AA
 
             i_dx += 1
@@ -614,7 +614,12 @@ class PoligrasRunner(object):
 
         print('==============================\n')
 
-        print('#super edge: ', len(self.super_edge))
+        print('#super edge: ', len(self.superEdges))
         print('correction set size: ', len(self.correctionSet_plus) + len(self.correctionSet_minus))
-        print("\n-------SuperNode encoding ended, total reward is {}---------.\n".format(self.init_graph.number_of_edges() - len(self_edge) - len(self.super_edge) - len(self.correctionSet_plus) - len(self.correctionSet_minus)))
+        print("\n-------SuperNode encoding ended, total reward is {}---------.\n".format(self.init_graph.number_of_edges() - len(self_edge) - len(self.superEdges) - len(self.correctionSet_plus) - len(self.correctionSet_minus)))
+
+
+        f = open('./{}_graph_summary'.format(self.args.dataset), 'wb')
+        pickle.dump({'superNodes_dict': self.superNodes_dict, 'superEdge_list': self.superEdges, 'self_edge_list': self_edge, 'correctionSet_plus_list': self.correctionSet_plus, 'correctionSet_minus_list': self.correctionSet_minus}, f)
+        f.close()
 
