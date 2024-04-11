@@ -29,7 +29,7 @@ scikit-learn      0.20.0
 
 
 <!--<p align="justify">-->
-### *All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the size limitation in Github(<= 25MB), we cannot directly upload some datasets onto Github website)*. 
+### *All datasets can be accessed <a href="https://drive.google.com/drive/folders/1v0CGwxQq2sgmraaWWD9nF9OFgwdb44Nv?usp=sharing" target="_blank">[here]</a> (because of the size limitation in Github (<= 25MB), we cannot directly upload some datasets onto Github website)*. 
 
 We have uploaded the astro-ph and cnr-200 (in .zip file) into the `./dataset/`. Before running code on a specific dataset, please make sure to create a file directory with the same name as the dataset at first, then download and unzip dataset files from the given link and put them into the created file directory. 
 
@@ -152,7 +152,13 @@ Apart from the graph summarization rewards, users can also see the final graph s
 
 ## Code structures
 
-The <code>run.py</code> is to set up all hyperparameters; the <code>model.py</code> includes model details; the <code>node_feature_generation.py</code> is to generate node features for the given graph.
+The <code>run.py</code> is to set up all hyperparameters and import the Poligras model implemented in <code>model.py</code>.
+
+The <code>model.py</code> includes the Poligras model details.
+
+The <code>node_feature_generation.py</code> is to generate node features for the given graph.
+
+The <code>networkx_graph_generation.py</code> is to
  
 
 
