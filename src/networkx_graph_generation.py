@@ -49,7 +49,7 @@ if __name__ == "__main__":
     g = load_initial_graph(dataset_name=args.dataset)
 
 
-    f = open('./' + args.dataset + '_graph', 'wb')
+    f = open(args.dataset + '_graph', 'wb')
     data = {'G': g}
     pickle.dump(data, f)
     f.close()
